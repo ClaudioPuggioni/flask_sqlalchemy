@@ -1,15 +1,9 @@
-import os
-import psycopg2
-from dotenv import load_dotenv
 from flask import Flask
-
-load_dotenv()
+from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
-url = os.getenv("DATABASE_URL")
-connection = psycopg2.connect(url)
 
+# Middleware
+cors = CORS(app)
 
-@app.get("/")
-def home():
-    return "Hello, world"
+from views import *
